@@ -8,11 +8,11 @@ Fall 2024 AOS C204 Final Project
 
 ## Introduction 
 
-Here is a summary description of the topic. Here is the problem. This is why the problem is important.
+Steam is the biggest gaming platform, hosting over 50,000 video games and over 132 million users globally [1]. Each user can "recommend" or "not recommend" a game by simply clicking a button while reviewing a game. Using game features such as genres and release date, we can classify a user's reviewed games and find out the user's gaming preference.
 
-There is some dataset that we can use to help solve this problem. This allows a machine learning approach. This is how I will solve the problem using supervised/unsupervised/reinforcement/etc. machine learning.
+The datasets I'm using are [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset provided by The Devastator and [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset provided by Anton Kozyriev, both on [Kaggle](https://www.kaggle.com/datasets). Steam Games include game features, and Game Recommendations describes user reviews.
 
-We did this to solve the problem. We concluded that...
+I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain user with very clear game preference (liking the same type of games); if a user plays a variety of different games and like all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
 
 ## Data
 
@@ -56,7 +56,7 @@ Here is a brief summary. From this work, the following conclusions can be made:
 Here is how this work could be developed further in a future project.
 
 ## References
-[1] DALL-E 3
+[1] [Steam Statistics (2024) —Active Users & Market Share](https://www.demandsage.com/steam-statistics/)
 
 [back](./)
 **Hi class, welcome to the AOS C111/204 final project!** <img align="right" width="220" height="220" src="/assets/IMG/template_logo.png">
