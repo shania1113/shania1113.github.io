@@ -31,7 +31,7 @@ Each user has a unique user ID, and this ID can be repeated many times (a user e
 
 ## Modelling
 
-First, an individual user is selected. There are 56 users who reviewed more than 1000 games total, and 53 of them reviewed more than 100 games released before 2017. Users are randomly selected for each run, and user id can be modified in a separate [file]((assets/userid.py) to ensure global variable availability, in case we need it in another script.
+First, an individual user is selected. There are 56 users who reviewed more than 1000 games total, and 53 of them reviewed more than 100 games released before 2017. Users are randomly selected for each run, and the user id can be modified in a separate [file]((assets/userid.py) to ensure global variable availability, in case we need it in another script.
 
 Once the user ID is obtained, a separate dataframe can be created like so:
 
@@ -43,9 +43,7 @@ df = pd.read_csv('data_cleaned.csv')
 luckyguy = df[df['user_id'] == user_id]
 ```
 
-There are many machine learning tools that are suitable for recommendation systems, such as SVD (single value decomposer)[2] or CF (collaborative filtering)[3]
-
-The model might involve optimizing some quantity. You can include snippets of code if it is helpful to explain things.
+There are many machine learning tools that are suitable for recommendation systems, such as SVD (single value decomposer)[2] or CF (collaborative filtering)[3]. SVD would be the ideal method for creating an actual recommendation system for every user in the 41 million-long datasets since it compares the recommendations from users who play similar games to provide a reliable prediction of games that anyone may like. However, SVD requires the data in a uniform matrix (for example, if there are 500 games to analyze, then each user will need to have 500 entries; if they never reviewed that game, then the entry value would be zero), and to process our massive amount of data to this shape requires more work that can be done in the limited time, with limited memories on my laptop. Due to the variety of the games needed for this analysis, I want as many games as possible in my training dataset; therefore I need to cut the number of users to make this model work. Cutting the number of users can result in not enough comparable users, thus the best method for this project would be to use a simple decision tree classifier on an individual user. The model script can be found in [this file](assets/decisiontree.ipynb).
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
@@ -98,8 +96,6 @@ rmse = np.sqrt(mse)
 print(f"Mean Squared Error (MSE): {mse:.2f}")
 print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 ```
-
-This is how the method was developed.
 
 ## Results
 
