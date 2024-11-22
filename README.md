@@ -14,9 +14,10 @@ The datasets I'm using are [Steam Games](https://www.kaggle.com/datasets/thedeva
 
 I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain user with very clear game preference (liking the same type of games); if a user plays a variety of different games and like all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
 
+
 ## Data
 
-Here is an overview of the dataset, how it was obtained and the preprocessing steps taken, with some plots!
+1. FEATURES. The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset contains over 12,000 games, mostly released before January 2017. This data is collected from Steam API and is under the Steam API term of use. The clean-up process of this file can be found in [this script](assets/game_feature_data.ipynb).
 
 ![](assets/IMG/datapenguin.png){: width="500" }
 
@@ -54,6 +55,12 @@ Here is a brief summary. From this work, the following conclusions can be made:
 * second conclusion
 
 Here is how this work could be developed further in a future project.
+
+## Special Thanks
+
+The code writing for this project had help from ChatGPT, including asking it coding questions on how to use specific functions, but the author writes major work. 
+
+Some other coding questions are answered by the previous course ICCs and StackOverflow.
 
 ## References
 [1] [Steam Statistics (2024) —Active Users & Market Share](https://www.demandsage.com/steam-statistics/)
