@@ -8,11 +8,11 @@ Fall 2024 AOS C204 Final Project
 
 ## Introduction 
 
-Steam is the biggest gaming platform, hosting over 50,000 video games and over 132 million users globally [1]. Each user can "recommend" or "not recommend" a game by simply clicking a button while reviewing a game. Using game features such as genres and release date, we can classify a user's reviewed games and find out the user's gaming preference.
+Steam is the biggest gaming platform, hosting over 50,000 video games and over 132 million users globally [1]. Each user can "recommend" or "not recommend" a game by simply clicking a button while reviewing a game. Using game features such as genres and release dates, we can classify a user's reviewed games and find out the user's gaming preference.
 
-The datasets I'm using are [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset provided by The Devastator and [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset provided by Anton Kozyriev, both on [Kaggle](https://www.kaggle.com/datasets). Steam Games include game features, and Game Recommendations describes user reviews.
+The datasets I'm using are [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset provided by The Devastator and [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset provided by Anton Kozyriev, both on [Kaggle](https://www.kaggle.com/datasets). Steam Games includes game features, and Game Recommendations describes user reviews.
 
-I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain user with very clear game preferences (liking the same type of games); if a user plays a variety of different games and like all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
+I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain users with very clear game preferences (liking the same type of games); if a user plays a variety of different games and likes all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
 
 
 ## Data
@@ -33,13 +33,24 @@ Each user has a unique user ID, and this ID can be repeated many times (a user e
 
 First, an individual user is selected. There are 56 users who reviewed more than 1000 games total, and 53 of them reviewed more than 100 games released before 2017. Users are randomly selected for each run, and user id can be modified in a separate [file]((assets/userid.py) to ensure global variable availability, in case we need it in another script.
 
-Here are some more details about the machine learning approach, and why this was deemed appropriate for the dataset. 
+Once the user ID is obtained, a separate dataframe can be created like so:
+
+```python
+# import dataset to work with
+df = pd.read_csv('data_cleaned.csv')
+
+# extract specific user
+luckyguy = df[df['user_id'] == user_id]
+```
+
+There are many machine learning tools that are suitable for recommendation systems, such as SVD (single value decomposer)[2] or CF (collaborative filtering)[3]
 
 The model might involve optimizing some quantity. You can include snippets of code if it is helpful to explain things.
 
 ```python
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report, mean_squared_error
 # select features and target
 feature_columns = [
     'IsFree', 
@@ -75,6 +86,17 @@ y_pred = model.predict(X_test)
 # evaluate model's performance
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
+
+# classification report
+print("\nClassification Report:\n")
+print(classification_report(y_test, y_pred))
+
+# calculate RMSE
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 ```
 
 This is how the method was developed.
@@ -103,5 +125,9 @@ Some other coding questions are answered by the previous course ICCs and StackOv
 
 ## References
 [1] [Steam Statistics (2024) —Active Users & Market Share](https://www.demandsage.com/steam-statistics/)
+
+[2] https://github.com/Michalos88/Game-Recommendation-System
+
+[3] [The Steam Engine: A Recommendation System for Steam Users](https://brandonlin.com/steam.pdf)
 
 [back](./)
