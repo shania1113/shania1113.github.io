@@ -18,10 +18,13 @@ I used the scikit-learn decision tree classifier to train and test the model on 
 ## Data
 
 1. FEATURES. The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset contains over 12,000 games, mostly released before January 2017. This data is collected from Steam API and is under the Steam API term of use. The clean-up process of this file can be found in [this script](assets/game_feature_data.ipynb). Data column example is shown below:
+![](assets/IMG/featuredatahead.png){: width="500" }
 
-First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using python's re module since the release-date column is not in uniform date form. 
+First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using Python's re module since the release-date column is not in uniform date form. Lastly, I filtered out the games that had no recommendation reviews and reduced the data length to 4846, almost 1/3 of the original.
 
-![](assets/IMG/datapenguin.png){: width="500" }
+
+2. 
+
 
 *Figure 1: Here is a caption for my diagram. This one shows a pengiun [1].*
 
