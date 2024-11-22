@@ -12,12 +12,14 @@ Steam is the biggest gaming platform, hosting over 50,000 video games and over 1
 
 The datasets I'm using are [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset provided by The Devastator and [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset provided by Anton Kozyriev, both on [Kaggle](https://www.kaggle.com/datasets). Steam Games include game features, and Game Recommendations describes user reviews.
 
-I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain user with very clear game preference (liking the same type of games); if a user plays a variety of different games and like all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
+I used the scikit-learn decision tree classifier to train and test the model on multiple users. I found that this model only works well for certain user with very clear game preferences (liking the same type of games); if a user plays a variety of different games and like all of them, the model isn't useful in recommending them new games or analyzing their preference. For some users who only give out positive or negative views, the model has a very high accuracy but is meaningless in recommending games.
 
 
 ## Data
 
-1. FEATURES. The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset contains over 12,000 games, mostly released before January 2017. This data is collected from Steam API and is under the Steam API term of use. The clean-up process of this file can be found in [this script](assets/game_feature_data.ipynb).
+1. FEATURES. The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset contains over 12,000 games, mostly released before January 2017. This data is collected from Steam API and is under the Steam API term of use. The clean-up process of this file can be found in [this script](assets/game_feature_data.ipynb). Data column example is shown below:
+
+First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using python's re module since the release-date column is not in uniform date form. 
 
 ![](assets/IMG/datapenguin.png){: width="500" }
 
@@ -30,12 +32,43 @@ Here are some more details about the machine learning approach, and why this was
 The model might involve optimizing some quantity. You can include snippets of code if it is helpful to explain things.
 
 ```python
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.datasets import make_classification
-X, y = make_classification(n_features=4, random_state=0)
-clf = ExtraTreesClassifier(n_estimators=100, random_state=0)
-clf.fit(X, y)
-clf.predict([[0, 0, 0, 0]])
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+# select features and target
+feature_columns = [
+    'IsFree', 
+    'GenreIsNonGame', 
+    'GenreIsIndie', 
+    'GenreIsAction', 
+    'GenreIsAdventure', 
+    'GenreIsCasual', 
+    'GenreIsStrategy', 
+    'GenreIsRPG', 
+    'GenreIsSimulation', 
+    'GenreIsEarlyAccess', 
+    'GenreIsFreeToPlay', 
+    'GenreIsSports', 
+    'GenreIsRacing', 
+    'GenreIsMassivelyMultiplayer', 
+    'After2014', 
+    'Expensive'
+]
+X = luckyguy[feature_columns]
+y = luckyguy['is_recommended']
+
+# split the dataset into train and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20)
+
+# train 
+model = DecisionTreeClassifier(random_state=42)
+model.fit(X_train, y_train)
+
+# predictions
+y_pred = model.predict(X_test)
+
+# evaluate model's performance
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
 ```
 
 This is how the method was developed.
