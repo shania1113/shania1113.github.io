@@ -121,7 +121,13 @@ Figure X shows... [description of Figure X].
 
 ## Discussion
 
-From Figure X, one can see that... [interpretation of Figure X].
+Due to the limitations of the model and the dataset, there are some drawbacks.
+
+The dataset that contains the features only has relatively old games; if a Steam user is used to newer or higher graphic quality games that are released more recently, they might give older games "not recommended" just because of the difference in game graphic quality. And if that is the case, our model will not be as useful for predicting if they will like a newer game, since our training data will be majority of "not recommended". This limits our model's use of games released within the timeframe of the dataset.
+
+Steam allows game library sharing, meaning that multiple people can share the same user account to play games purchased on only one account. If these people all have different tastes in games, the same user account can appear to give out very different reviews on games, lowering our model accuracy.
+
+Even video games within the same genre can be very different depending on their stories, art styles, difficulty levels, music, etc. There are many descriptive "tags" that can also be used as features in our model on top of genres, however, the cleaned-up data I used doesn't have them, and it is extremely difficult to pull them from a massive raw JSON file on a personal computer. Due to the difficulty of this task, I did not include any "tags" as features, but in any future projects, incorporating them will increase the model accuracy. 
 
 ## Conclusion
 
