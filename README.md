@@ -32,7 +32,7 @@ The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on
 | Half-Life: Opposing Force |          1999 |            0 |                  2934 | False    | False            | False          | True            | False              | False           | False             | False        | False               | False                | False               | False           | False           | False                         |           4.99 |           0 |           0 |
 
 
-First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using Python's re module since the release-date column is not in uniform date form. Lastly, I filtered out the games that had no recommendation reviews and reduced the data length to 4846, almost 1/3 of the original. The cleaned-up data is exported to [this file](assets/game_feature_data.csv), later used to be combined with the target file.
+First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using Python's re module since the release-date column is not in uniform date form. Lastly, I filtered out the games that had no recommendation reviews and reduced the data length to 4846, almost 1/3 of the original. I added the "Expensive" feature to the dataset based on the price of the game, if it's sold at more than 20 dollars then I classified it as expensive, thus will have a "True" value for this feature. The cleaned-up data is exported to [this file](assets/game_feature_data.csv), later used to be combined with the target file.
 
 #### TARGET
 The [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset contains two files, "recommendations.csv" with over 41 million Steam game reviews and "games.csv" with all the game names, release dates, and IDs. The clean-up and compile process can be found in [this script](assets/recommendation.ipynb). The example pandas data column of the merged product is shown below:
@@ -49,7 +49,7 @@ Each user has a unique user ID, and this ID can be repeated many times (a user e
 
 ## Modelling
 
-First, an individual user is selected. There are 56 users who reviewed more than 1000 games total, and 53 of them reviewed more than 100 games released before 2017. Users are randomly selected for each run, and the user id can be modified in a separate [file]((assets/userid.py) to ensure global variable availability, in case we need it in another script.
+First, an individual user is selected. There are 56 users who reviewed more than 1000 games total, and 53 of them reviewed more than 100 games released before 2017. Users are randomly selected for each run, and the user id can be modified at the top of [this file](assets/decisiontree.ipynb) that contains the model script.
 
 Once the user ID is obtained, a separate dataframe can be created like so:
 
