@@ -146,7 +146,7 @@ Some other coding questions are answered by the previous course ICCs and StackOv
 ## References
 [1] [Steam Statistics (2024) —Active Users & Market Share](https://www.demandsage.com/steam-statistics/)
 
-[2] https://github.com/Michalos88/Game-Recommendation-System
+[2] [https://github.com/Michalos88/Game-Recommendation-System](https://github.com/Michalos88/Game-Recommendation-System)
 
 [3] [The Steam Engine: A Recommendation System for Steam Users](https://brandonlin.com/steam.pdf)
 
