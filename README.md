@@ -130,7 +130,7 @@ Here is how this work could be developed further in a future project.
 
 ## Special Thanks
 
-The code writing for this project had help from ChatGPT, including asking it coding questions on how to use specific functions, but the author writes major work. 
+The code writing for this project had help from [ChatGPT](https://chatgpt.com/).
 
 Some other coding questions are answered by the previous course ICCs and StackOverflow.
 
