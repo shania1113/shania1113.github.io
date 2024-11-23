@@ -20,7 +20,6 @@ I used the scikit-learn decision tree classifier to train and test the model on 
 #### FEATURES
 The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on-metacritic-recommendations-and) dataset contains one CSV file named "games-features-edit.csv" with over 12,000 games, mostly released before January 2017. This data is collected from Steam API and is under the Steam API term of use. The clean-up process of this file can be found in [this script](assets/game_feature_data.ipynb). The example pandas data column is shown below:
 
-<div style="overflow-x: auto;">
 
 | ResponseName              |   ReleaseDate |   Metacritic |   RecommendationCount | IsFree   | GenreIsNonGame   | GenreIsIndie   | GenreIsAction   | GenreIsAdventure   | GenreIsCasual   | GenreIsStrategy   | GenreIsRPG   | GenreIsSimulation   | GenreIsEarlyAccess   | GenreIsFreeToPlay   | GenreIsSports   | GenreIsRacing   | GenreIsMassivelyMultiplayer   |   PriceInitial |   After2014 |   Expensive |
 |--------------------------|--------------|-------------|----------------------|---------|-----------------|---------------|----------------|-------------------|----------------|------------------|-------------|--------------------|---------------------|--------------------|----------------|----------------|------------------------------|---------------|------------|------------|
@@ -30,7 +29,6 @@ The [Steam Games](https://www.kaggle.com/datasets/thedevastator/get-your-game-on
 | Deathmatch Classic        |          2001 |            0 |                   888 | False    | False            | False          | True            | False              | False           | False             | False        | False               | False                | False               | False           | False           | False                         |           4.99 |           0 |           0 |
 | Half-Life: Opposing Force |          1999 |            0 |                  2934 | False    | False            | False          | True            | False              | False           | False             | False        | False               | False                | False               | False           | False           | False                         |           4.99 |           0 |           0 |
 
-</div>
 
 First I cleaned out the games not released, and then I added a release-date feature by extracting the release year using Python's re module since the release-date column is not in uniform date form. Lastly, I filtered out the games that had no recommendation reviews and reduced the data length to 4846, almost 1/3 of the original. The cleaned-up data is exported to [this file](assets/game_feature_data.csv), later used to be combined with the target file.
 
