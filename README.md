@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="styles.css">
+
 ## Steam User Preference and Game Recommendation using Simple Decision Tree Classifier
 
 Lingxi Liu
