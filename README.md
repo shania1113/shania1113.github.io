@@ -37,8 +37,6 @@ First I cleaned out the games not released, and then I added a release-date feat
 #### TARGET
 The [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam) dataset contains two files, "recommendations.csv" with over 41 million Steam game reviews and "games.csv" with all the game names, release dates, and IDs. The clean-up and compile process can be found in [this script](assets/recommendation.ipynb). The example pandas data column of the merged product is shown below:
 
-<div style="overflow-x: auto;">
-
 |   app_id |   helpful |   funny | date       | is_recommended   |   hours |          user_id |   review_id | date_release        | title                             |   year |
 |----------|-----------|---------|------------|------------------|---------|------------------|-------------|---------------------|-----------------------------------|--------|
 |    13500 |         0 |       0 | 2021-03-29 | True             |     0.1 | 748899           | 1.42596e+07 | 2008-11-21 00:00:00 | Prince of Persia: Warrior Within™ |   2008 |
@@ -46,8 +44,6 @@ The [Game Recommendations on Steam](https://www.kaggle.com/datasets/antonkozyrie
 |    13500 |         8 |       3 | 2021-11-12 | True             |     1.2 |      1.15536e+07 | 1.4281e+07  | 2008-11-21 00:00:00 | Prince of Persia: Warrior Within™ |   2008 |
 |    13500 |         3 |       0 | 2020-09-28 | False            |     1.2 |      1.2823e+07  | 1.42925e+07 | 2008-11-21 00:00:00 | Prince of Persia: Warrior Within™ |   2008 |
 |    13500 |         0 |       0 | 2013-08-25 | True             |    17.3 |      1.1681e+07  | 3.00331e+07 | 2008-11-21 00:00:00 | Prince of Persia: Warrior Within™ |   2008 |
-
-</div>
 
 Each user has a unique user ID, and this ID can be repeated many times (a user even reviewed more than 6000 games, so their reviews would take up 6000 rows in this dataset) for each game that they review. Similarly, the game ID repeats many times as different users review them. First, the two CSV files are merged together by game_id to fetch the game name and release date for later processing. Then, users who viewed more than 1000 games are selected from the original massive dataset, acting as our potential training target so that the model has enough data to be trained. Lastly, games released after 2016 are filtered out to match the features data. When this dataset is ready, the target data is merged with features data by game title, and luckily both dataset has almost identical game name formats. For decision tree processing, all "True/False" values are turned into "1/0". The final product is exported to [this file](assets/data_cleaned.csv), to be imported to the model script for analysis. The list of users is also obtained through the value_count() method for the pandas dataframe, exported to [this file](assets/list_of_users.csv).
 
