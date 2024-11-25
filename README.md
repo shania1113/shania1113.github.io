@@ -117,8 +117,16 @@ print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 
 ## Results
 
+The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations. This user reviewed 3624 games.
+
+Model accuracy and RMSE report:
+Accuracy: 0.96
+Mean Squared Error (MSE): 0.04
+Root Mean Squared Error (RMSE): 0.20
+
 ![User who gave out the most reviews (3624 reviews).](assets/featureimportance.png)
 
+![User who gave out the most reviews (3624 reviews).](assets/recommendationrate.png)
 ## Discussion
 
 Due to the limitations of the model and the dataset, there are some drawbacks.
