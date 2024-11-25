@@ -115,7 +115,7 @@ print(f"Mean Squared Error (MSE): {mse:.2f}")
 print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 ```
 
-For result visualization, I used the code from HW3 to plot the feature importance in the decision tree.
+Note that there are random factors included in the model, each run will likely produce a slightly different model accuracy. For result visualization, I used the code from HW3 to plot the feature importance in the decision tree.
 
 ```python3
 import matplotlib.pyplot as plt
@@ -169,7 +169,7 @@ plt.show()
 
 ## Results
 
-The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations. This user reviewed 3624 games.
+The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations. This user (ID = 11656130) reviewed 3624 games.
 
 Model accuracy and RMSE report:
 Accuracy: 0.96
@@ -186,7 +186,14 @@ Root Mean Squared Error (RMSE): 0.20
 
 The model accuracy for this user is very high with a very small error. The results infer two reasons for a well-working model: 
 1. this user gives reviews to only a certain type of games as shown in feature importance (we have a few features that are distinctly more important than others)
-2. this user almost only gives "not recommended" review to the games they play, 
+2. this user almost only gives a "not recommended" review to the games they play. Therefore, even without the model, randomly guessing the user will give a "not recommended" to a new game will have a ~96% accuracy by pure possibilities.
+
+The accuracy of the model varies for different users due to the reasons specified above. 
+For user ID = 11250992, the variety of games and recommendation rate are both higher than the example user and model accuracy drops to 0.62;
+For user ID = 574944, the variety of games and recommendation rate are even higher than above, and model accuracy drops to 0.54.
+
+It seems like the user ID is a unique identification value given for this dataset, as I tried finding my own Steam ID, but I didn't find a match. 
+
 ## Discussion
 
 Due to the limitations of the model and the dataset, there are some drawbacks.
