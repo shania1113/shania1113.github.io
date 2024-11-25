@@ -117,7 +117,7 @@ print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 
 ## Results
 
-Figure X shows... [description of Figure X].
+![User who gave out the most reviews (3624 reviews).](assets/featureimportance.png)
 
 ## Discussion
 
