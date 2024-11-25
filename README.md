@@ -169,7 +169,7 @@ plt.show()
 
 ## Results
 
-The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations. This user (ID = 11656130) reviewed 3624 games.
+The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations in the cleaned-up dataset. This user (ID = 11656130) reviewed 1933 games.
 
 Model accuracy and RMSE report:
 Accuracy: 0.96
@@ -206,11 +206,9 @@ Even video games within the same genre can be very different depending on their 
 
 ## Conclusion
 
-Here is a brief summary. From this work, the following conclusions can be made:
-* first conclusion
-* second conclusion
+The usage of a simple Decision Tree Classifier isn't necessarily the best method for game recommendations, but it is sufficient to provide insights on player recommendation preference and play style. From the model accuracy and feature importance report, we can examine the types of games they play and how much they like them.
 
-Here is how this work could be developed further in a future project.
+Due to limitations in data acquisition and cleaning up, I did not obtain the most up-to-date complete dataset for Steam users and games. For possible future developments, a more massive dataset can be acquired and cleaned, and a more complicated model such as the SVD model can be applied for a better game recommendation system.
 
 ## Special Thanks
 
