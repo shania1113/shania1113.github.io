@@ -127,12 +127,14 @@ std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0) 
 indices = np.argsort(importances)[::-1]
 
 # plot
-plt.figure(figsize=(10, 6))
-plt.barh(np.array(feature_columns)[indices], importances[indices])
-plt.xlabel("Feature Importance")
-plt.ylabel("Features")
-plt.title("Feature Importance in Decision Tree")
-plt.gca().invert_yaxis()  # Most important features at the top
+plt.figure(figsize=(6,6))
+plt.title("Feature Importances", fontsize=16)
+plt.bar(range(len(feature_columns)), importances[indices], color="skyblue",
+        yerr=std[indices] if std is not None else None, align="center", edgecolor="black")
+plt.xticks(range(len(feature_columns)), np.array(feature_columns)[indices], rotation=45, ha='right', fontsize=12)
+plt.xlabel("Features", fontsize=14)
+plt.ylabel("Importance", fontsize=14)
+plt.tight_layout()
 plt.show()
 
 # print feature ranking
@@ -159,7 +161,7 @@ plt.pie(
     autopct='%1.1f%%', 
     startangle=90, 
     textprops={'fontsize': 12},
-    explode=(0.1, 0)  # Slightly explode the "Recommended" slice
+    explode=(0.1, 0)  # slightly explode the "Recommended" slice
 )
 plt.title("Game Recommendation Rate", fontsize=16)
 plt.show()
@@ -182,6 +184,9 @@ Root Mean Squared Error (RMSE): 0.20
 
 *Figure 2:Recommendation Rate for this user.*
 
+The model accuracy for this user is very high with a very small error. The results infer two reasons for a well-working model: 
+1. this user gives reviews to only a certain type of games as shown in feature importance (we have a few features that are distinctly more important than others)
+2. this user almost only gives "not recommended" review to the games they play, 
 ## Discussion
 
 Due to the limitations of the model and the dataset, there are some drawbacks.
