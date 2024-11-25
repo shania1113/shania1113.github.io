@@ -115,6 +115,56 @@ print(f"Mean Squared Error (MSE): {mse:.2f}")
 print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 ```
 
+For result visualization, I used the code from HW3 to plot the feature importance in the decision tree.
+
+```python3
+import matplotlib.pyplot as plt
+
+# calculate feature importances for each feature from HW3
+importances = model.feature_importances_
+
+std = np.std([tree.feature_importances_ for tree in model.estimators_], axis=0) if hasattr(model, 'estimators_') else None
+indices = np.argsort(importances)[::-1]
+
+# plot
+plt.figure(figsize=(10, 6))
+plt.barh(np.array(feature_columns)[indices], importances[indices])
+plt.xlabel("Feature Importance")
+plt.ylabel("Features")
+plt.title("Feature Importance in Decision Tree")
+plt.gca().invert_yaxis()  # Most important features at the top
+plt.show()
+
+# print feature ranking
+print("Feature Ranking:")
+for rank, index in enumerate(indices, start=1):
+    print(f"{rank}. {feature_columns[index]} ({importances[index]:.4f})")
+```
+
+To examine the user's recommendation preference, I also made a pie chart to show the recommendation percentage.
+
+```python3
+# count recommendation for this user
+recommendation_counts = luckyguy['is_recommended'].value_counts()
+labels = ['Not Recommended', 'Recommended']
+values = recommendation_counts.values
+colors = ["steelblue", "orange"]
+
+# Pie Chart for Recommendation Rate
+plt.figure(figsize=(10, 6))
+plt.pie(
+    values, 
+    labels=labels, 
+    colors=colors, 
+    autopct='%1.1f%%', 
+    startangle=90, 
+    textprops={'fontsize': 12},
+    explode=(0.1, 0)  # Slightly explode the "Recommended" slice
+)
+plt.title("Game Recommendation Rate", fontsize=16)
+plt.show()
+```
+
 ## Results
 
 The model is applied to ~10 users. Here, I will show an example output from the user who gave the most recommendations. This user reviewed 3624 games.
@@ -126,7 +176,12 @@ Root Mean Squared Error (RMSE): 0.20
 
 ![User who gave out the most reviews (3624 reviews).](assets/featureimportance.png)
 
+*Figure 1: Feature Importance for this user.*
+
 ![User who gave out the most reviews (3624 reviews).](assets/recommendationrate.png)
+
+*Figure 2:Recommendation Rate for this user.*
+
 ## Discussion
 
 Due to the limitations of the model and the dataset, there are some drawbacks.
