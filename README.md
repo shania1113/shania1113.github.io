@@ -205,6 +205,8 @@ Steam allows game library sharing, meaning that multiple people can share the sa
 
 Even video games within the same genre can be very different depending on their stories, art styles, difficulty levels, music, etc. There are many descriptive "tags" that can also be used as features in our model on top of genres, however, the cleaned-up data I used doesn't have them, and it is extremely difficult to pull them from a massive raw JSON file on a personal computer. Due to the difficulty of this task, I did not include any "tags" as features, but in any future projects, incorporating them will increase the model accuracy. 
 
+Another feature that could be considered in future studies is "time_played", which indicates the amount of time a user spent on the game. This feature can be used to filter reviews so that we only look at users who played extensively or those who barely played; it is not included in this study because a short play time doesn't invalidate a review (for example, a user can find a game boring in the first three hours and leave a bad review). However, reviews with longer play time can show very different recommendation rates compared to those barely played (for example, the users who leave a review after playing a game for more than 300 hours indicate that the game is at least fun enough for them to play for a long time).
+
 ## Conclusion
 
 The usage of a simple Decision Tree Classifier isn't necessarily the best method for game recommendations, but it is sufficient to provide insights on player recommendation preference and play style. From the model accuracy and feature importance report, we can examine the types of games they play and how much they like them.
