@@ -219,9 +219,6 @@ The code writing for this project had help from [ChatGPT](https://chatgpt.com/).
 
 Some other coding questions are answered by the previous course ICCs and StackOverflow.
 
-Users who gathered and cleaned up the dataset used in this study.
-
-
 ## References
 [1] [Steam Statistics (2024) —Active Users & Market Share](https://www.demandsage.com/steam-statistics/)
 
